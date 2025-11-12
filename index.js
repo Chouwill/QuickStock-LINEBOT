@@ -1,6 +1,8 @@
 import "dotenv/config";
 import linebot from "linebot";
 
+import commandStock from "./commands/stock.js"
+
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
   channelSecret: process.env.CHANNEL_SECRET,
@@ -14,9 +16,10 @@ bot.on("message", (event) => {
 
   console.log("\n 使用者傳來的文字:\n", event.message.text);
 
-  // if(event.message.type ==='text'){
+  if(event.message.type ==='text'){
+   console.log("000000",commandStock);
 
-  // }
+  }
 });
 
 bot.listen("/", process.env.PORT || 3000, () => {
