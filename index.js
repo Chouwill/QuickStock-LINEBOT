@@ -9,7 +9,7 @@ const bot = linebot({
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
 });
 
-bot.on("message", (event) => {
+bot.on("message", async(event) => {
   console.log(" 完整事件內容 event:\n", event);
 
   console.log("\n 訊息本體 event.message:\n", event.message);
@@ -17,7 +17,7 @@ bot.on("message", (event) => {
   console.log("\n 使用者傳來的文字:\n", event.message.text);
 
   if(event.message.type ==='text'){
-   console.log("000000",commandStock);
+   console.log("000000",await commandStock(event));
 
   }
 });

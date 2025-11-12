@@ -1,0 +1,67 @@
+{
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "",
+          "weight": "bold",
+          "size": "lg",
+          "align": "center",
+          "color": "#0066CC"
+        },
+        {
+          "type": "text",
+          "text": "日期：",
+          "size": "sm",
+          "align": "center",
+          "color": "#555555",
+          "margin": "sm"
+        },
+        {
+          "type": "text",
+          "text": "收盤價:元",
+          "weight": "bold",
+          "size": "md",
+          "align": "center",
+          "color": "#333333",
+          "margin": "md"
+        },
+        {
+          "type": "text",
+          "text": "最高價:元",
+          "size": "sm",
+          "align": "center",
+          "color": "#D92D20",
+          "margin": "sm"
+        },
+        {
+          "type": "text",
+          "text": "最低價:元",
+          "size": "sm",
+          "align": "center",
+          "color": "#00AA00",
+          "margin": "sm"
+        },
+        {
+          "type": "separator",
+          "margin": "md"
+        },
+        {
+          "type": "text",
+          "text": "資料僅供參考",
+          "color": "#999999",
+          "size": "xs",
+          "align": "center",
+          "margin": "sm"
+        }
+      ]
+    },
+    "styles": {
+      "body": {
+        "backgroundColor": "#F9FBFC"
+      }
+    }
+  }

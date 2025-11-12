@@ -1,0 +1,105 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://firebasestorage.googleapis.com/v0/b/projecttestapi-d84a9.firebasestorage.app/o/Pngtree-money.png?alt=media&token=d6487046-1c46-48fc-9ed0-201cdb6fd724",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "查詢匯率",
+            "weight": "bold",
+            "size": "xl",
+            "align": "center",
+            "color": "#1B73E8",
+            "margin": "md"
+          },
+          {
+            "type": "text",
+            "text": "快速查看各國幣值匯率",
+            "align": "center",
+            "color": "#666666",
+            "size": "sm",
+            "margin": "sm"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "md",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#1B73E8",
+            "action": {
+              "type": "message",
+              "label": "查詢匯率",
+              "text": "查詢匯率"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://firebasestorage.googleapis.com/v0/b/projecttestapi-d84a9.firebasestorage.app/o/Pngtree-stock.png?alt=media&token=ac260b25-2478-46ae-801a-2c7d4e11f1bc",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "查詢台股股票",
+            "weight": "bold",
+            "size": "xl",
+            "align": "center",
+            "color": "#00AA00",
+            "margin": "md"
+          },
+          {
+            "type": "text",
+            "text": "即時掌握台股走勢與股價",
+            "align": "center",
+            "color": "#666666",
+            "size": "sm",
+            "margin": "sm"
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "md",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "color": "#00AA00",
+            "action": {
+              "type": "message",
+              "label": "查詢股票",
+              "text": "查詢股票"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
