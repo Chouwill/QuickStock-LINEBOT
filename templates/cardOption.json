@@ -5,7 +5,7 @@
       "type": "bubble",
       "hero": {
         "type": "image",
-        "url": "https://firebasestorage.googleapis.com/v0/b/projecttestapi-d84a9.firebasestorage.app/o/Pngtree-money.png?alt=media&token=d6487046-1c46-48fc-9ed0-201cdb6fd724",
+        "url": "https://raw.githubusercontent.com/Chouwill/API-Photos/master/Pngtree-money.png",
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover"
@@ -55,7 +55,7 @@
       "type": "bubble",
       "hero": {
         "type": "image",
-        "url": "https://firebasestorage.googleapis.com/v0/b/projecttestapi-d84a9.firebasestorage.app/o/Pngtree-stock.png?alt=media&token=ac260b25-2478-46ae-801a-2c7d4e11f1bc",
+        "url": "https://raw.githubusercontent.com/Chouwill/API-Photos/master/Pngtree-stock.png",
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover"

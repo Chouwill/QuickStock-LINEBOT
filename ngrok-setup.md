@@ -105,6 +105,7 @@ curl http://localhost:4040/api/tunnels
 1. **兩個終端都要保持運行**：
    - 一個跑 Bot（`npm run dev`）
    - 一個跑 ngrok（`npm run ngrok`）
+   - ` npm run dev npm run ngrok`
 
 2. **免費版 URL 會變動**：
    - ngrok 免費版每次啟動 URL 會不同

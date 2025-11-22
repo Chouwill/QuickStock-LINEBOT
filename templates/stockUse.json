@@ -1,0 +1,35 @@
+{
+    "type": "bubble",
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "股票查詢",
+          "weight": "bold",
+          "size": "lg",
+          "align": "center",
+          "margin": "md"
+        },
+        {
+          "type": "text",
+          "text": "請輸入股票代號（例如：0056）",
+          "wrap": true,
+          "color": "#666666",
+          "size": "md",
+          "align": "center",
+          "margin": "lg"
+        },
+        {
+          "type": "text",
+          "text": "小提示：輸入數字後我會自動查詢",
+          "wrap": true,
+          "color": "#999999",
+          "size": "sm",
+          "align": "center",
+          "margin": "lg"
+        }
+      ]
+    }
+  }
