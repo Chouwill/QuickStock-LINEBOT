@@ -81,10 +81,9 @@ bot.on("message", async (event) => {
       if (selectTemplate === action1) {
         // TODO: 匯率查詢功能待實作
       } else if (selectTemplate === action2) {
-        commandStock(userTextValue);
+        commandStock(userTextValue,event);
 
         console.log("使用者輸入的代號是", userTextValue);
-
       }
     }
   }
