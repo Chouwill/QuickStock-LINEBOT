@@ -1,7 +1,9 @@
 import axios from "axios";
 import stockUse from "../templates/stockUse.json" with { type: "json" };
 import stockResult from "../templates/stockResult.json" with { type: "json" };
-
+import dayjs from "dayjs";
+//import dayjs from 'dayjs' // ES 2015
+dayjs().format();
 export default async (userStr, event) => {
   console.log("使用者輸入：", userStr);
 
@@ -11,6 +13,14 @@ export default async (userStr, event) => {
   console.log("\n");
   console.log("\n");
   console.log("\n");
+  var now = dayjs();
+
+  // console.log(
+  //   "nowTime",
+  //   `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`
+  // );
+  const nowTime = `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`;
+
   console.log("\n");
 
   async function searchStock(userStr) {
@@ -33,8 +43,8 @@ export default async (userStr, event) => {
           params: {
             dataset: "TaiwanStockPrice",
             data_id: userStr,
-            start_date: "2025-12-07",
-            end_date: "2025-12-07",
+            start_date: nowTime,
+            end_date: nowTime,
             token: token,
           },
         }
