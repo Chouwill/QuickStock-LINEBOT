@@ -94,8 +94,8 @@
             "color": "#00AA00",
             "action": {
               "type": "message",
-              "label": "查詢股票",
-              "text": "查詢股票"
+              "label": "查詢台股",
+              "text": "查詢台股"
             }
           }
         ]

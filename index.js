@@ -15,27 +15,27 @@ const bot = linebot({
 let selectTemplate = "";
 let userTextValue = "";
 
-bot.on("follow", async (event) => {
-  console.log("新用戶已加入");
+// bot.on("follow", async (event) => {
+//   console.log("新用戶已加入");
 
-  const mouldboard = JSON.parse(JSON.stringify(template));
-  console.log(mouldboard);
+//   const mouldboard = JSON.parse(JSON.stringify(template));
+//   console.log(mouldboard);
 
-  // mouldboard.contents[0].body.contents.text
+//   // mouldboard.contents[0].body.contents.text
 
-  console.log(mouldboard.contents[0].body.contents[0].text);
+//   console.log(mouldboard.contents[0].body.contents[0].text);
 
-  // return mouldboard
+//   // return mouldboard
 
-  // 在被加入好友  發送模板
-  const result = await event.reply({
-    type: "flex",
-    altText: "歡迎使用財匯機器人",
-    contents: mouldboard,
-  });
+//   // 在被加入好友  發送模板
+//   const result = await event.reply({
+//     type: "flex",
+//     altText: "歡迎使用財匯機器人",
+//     contents: mouldboard,
+//   });
 
-  return result;
-});
+//   return result;
+// });
 
 bot.on("message", async (event) => {
   // console.log(" 完整事件內容 event:\n", event);
