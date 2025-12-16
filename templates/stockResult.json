@@ -56,6 +56,17 @@
         "color": "#00AA00",
         "margin": "sm"
       },
+
+      {
+        "type": "text",
+        "text": "目前非股票交易時間",
+        "size": "xs",
+        "color": "#999999",
+        "wrap": true,
+        "margin": "md",
+        "align": "center"
+      },
+
       {
         "type": "separator",
         "margin": "md"

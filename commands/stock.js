@@ -45,6 +45,8 @@ export default async (userStr, event) => {
             data_id: userStr,
             start_date: nowTime,
             end_date: nowTime,
+            // start_date: "2025-12-13",
+            // end_date: "2025-12-13",
             token: token,
           },
         }
@@ -65,14 +67,49 @@ export default async (userStr, event) => {
 
       console.log("合併後", concatData);
 
+      const resultTemplate = JSON.parse(JSON.stringify(stockResult));
 
-      resultTemplate.body.contents[0].text = `${concatData[0].stock_name + concatData[1].stock_id}`;
-      resultTemplate.body.contents[1].text = `日期:${concatData[1].date}`;
-      resultTemplate.body.contents[2].text = `收盤價:${concatData[1].close}`;
-      resultTemplate.body.contents[3].text = `開盤價:${concatData[1].open}`;
-      resultTemplate.body.contents[4].text = `成交量:${concatData[1].open}`;
-      resultTemplate.body.contents[5].text = `最高價:${concatData[1].max}`;
-      resultTemplate.body.contents[6].text = `最低價:${concatData[1].min}`;
+      if (concatData.length === 0) {
+        console.log("今天沒有資料");
+        resultTemplate.body.contents[0].text = `匯率:${userStr}`;
+        resultTemplate.body.contents[1].text = `日期：${nowTime}`;
+        resultTemplate.body.contents[7].text = `目前非股票交易時間`;
+        const result = await event.reply({
+          type: "flex",
+          altText: "000",
+          contents: resultTemplate,
+        });
+        return result;
+      } else if (!concatData[1]) {
+        // 防止 concatData[1] 是 undefined 的錯誤
+        console.log("資料不完整，concatData[1] 不存在");
+        console.log("今天沒有資料");
+        resultTemplate.body.contents[0].text = `股票:${userStr}`;
+        resultTemplate.body.contents[1].text = `日期：${nowTime}`;
+        resultTemplate.body.contents[7].text = `目前非股票交易時間`;
+        const result = await event.reply({
+          type: "flex",
+          altText: "000",
+          contents: resultTemplate,
+        });
+        return result;
+      } else {
+        resultTemplate.body.contents[0].text = `${concatData[0].stock_name + concatData[1].stock_id}`;
+        resultTemplate.body.contents[1].text = `日期:${concatData[1].date}`;
+        resultTemplate.body.contents[2].text = `收盤價:${concatData[1].close}`;
+        resultTemplate.body.contents[3].text = `開盤價:${concatData[1].open}`;
+        resultTemplate.body.contents[4].text = `成交量:${concatData[1].open}`;
+        resultTemplate.body.contents[5].text = `最高價:${concatData[1].max}`;
+        resultTemplate.body.contents[6].text = `最低價:${concatData[1].min}`;
+        resultTemplate.body.contents[7].text = ` `;
+
+        const result = await event.reply({
+          type: "flex",
+          altText: "000",
+          contents: resultTemplate,
+        });
+        return result;
+      }
 
       // console.log("股票代號＝＝＝＝＝＝",concatData[0].stock_name +concatData[0].stock_name )
       // console.log(
@@ -87,12 +124,12 @@ export default async (userStr, event) => {
       //   concatData[0].stock_name +
       //   concatData[0].stock_id;
 
-      const result = await event.reply({
-        type: "flex",
-        altText: "000",
-        contents: resultTemplate,
-      });
-      return result;
+      // const result = await event.reply({
+      //   type: "flex",
+      //   altText: "000",
+      //   contents: resultTemplate,
+      // });
+      // return result;
     } catch (error) {
       console.log(error);
     }
