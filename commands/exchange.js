@@ -60,8 +60,8 @@ export default async (userStr, event) => {
           params: {
             dataset: "TaiwanExchangeRate",
             data_id: userStr.toUpperCase(),
-            // date: nowTime,
-            date: "2025-12-15",
+            date: nowTime,
+            // date: "2025-12-15",
           },
         }
       );
