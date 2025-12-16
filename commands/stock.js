@@ -65,7 +65,6 @@ export default async (userStr, event) => {
 
       console.log("合併後", concatData);
 
-      const resultTemplate = JSON.parse(JSON.stringify(stockResult));
 
       resultTemplate.body.contents[0].text = `${concatData[0].stock_name + concatData[1].stock_id}`;
       resultTemplate.body.contents[1].text = `日期:${concatData[1].date}`;

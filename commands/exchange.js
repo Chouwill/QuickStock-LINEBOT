@@ -1,13 +1,13 @@
 import axios from "axios";
-import stockUse from "../templates/stockUse.json" with { type: "json" };
-import stockResult from "../templates/stockResult.json" with { type: "json" };
+import exchangeUse from "../templates/exchangeRateUse.json" with { type: "json" };
+import exchangeResult from "../templates/exchangeRateResult.json" with { type: "json" };
 import dayjs from "dayjs";
 //import dayjs from 'dayjs' // ES 2015
 dayjs().format();
 export default async (userStr, event) => {
   console.log("使用者輸入：", userStr);
 
-  console.log("stockUse", stockUse);
+  // console.log("stockUse", stockUse);
 
   console.log("\n");
   console.log("\n");
@@ -19,9 +19,32 @@ export default async (userStr, event) => {
   //   "nowTime",
   //   `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`
   // );
+
   const nowTime = `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`;
+  let todayWeekDay = dayjs().day();
+
+  // function isWeekend() {
+  //   console.log("今天幾日", nowDay);
+
+  //   if (todayWeekDay == 0 || todayWeekDay == 6) {
+  //     console.log(parseInt(nowDay-2));
+  //     console.log(typeof nowDay);
+  //   } else {
+  //     console.log(typeof nowDay);
+  //     console.log("今天為星期一到日");
+
+  //   }
+  // }
+  // isWeekend();
 
   console.log("\n");
+
+  //   date	日期	該筆匯率的牌告日期
+  // currency	幣別代碼	ISO 幣別（如 USD、JPY）
+  // cash_buy	現金買入	銀行向你「買入外幣現金」的價格
+  // cash_sell	現金賣出	銀行「賣你外幣現金」的價格
+  // spot_buy	即期買入	銀行向你「買入外幣帳戶」的價格
+  // spot_sell	即期賣出	銀行「賣你外幣帳戶」的價格
 
   async function searchExchange(userStr) {
     try {
@@ -37,12 +60,44 @@ export default async (userStr, event) => {
           params: {
             dataset: "TaiwanExchangeRate",
             data_id: userStr.toUpperCase(),
-            date: nowTime,
+            // date: nowTime,
+            date: "2025-12-15",
           },
         }
       );
+      console.log("今天日期", typeof todayWeekDay);
 
-      console.log("外匯", exchangeData.data);
+      console.log("外匯", exchangeData.data.data);
+      const resultTemplate = JSON.parse(JSON.stringify(exchangeResult));
+
+      if (exchangeData.data.data.length === 0) {
+        // 如果資料為空陣列
+        console.log("今天沒有資料");
+        resultTemplate.body.contents[0].text = `匯率:${userStr.toUpperCase()}`;
+        resultTemplate.body.contents[1].text = `日期：${nowTime}`;
+        resultTemplate.body.contents[6].text = `目前非外匯交易時間`;
+        const result = await event.reply({
+          type: "flex",
+          altText: "000",
+          contents: resultTemplate,
+        });
+        return result;
+      } else {
+        resultTemplate.body.contents[0].text = `匯率：${exchangeData.data.data[0].currency} / TWD`;
+        resultTemplate.body.contents[1].text = `日期：${exchangeData.data.data[0].date}`;
+        resultTemplate.body.contents[2].text = `即期買入：${exchangeData.data.data[0].spot_buy}`;
+        resultTemplate.body.contents[3].text = `即期賣出：${exchangeData.data.data[0].spot_sell}`;
+        resultTemplate.body.contents[4].text = `現金買入：${exchangeData.data.data[0].cash_buy}`;
+        resultTemplate.body.contents[5].text = `現金賣出：${exchangeData.data.data[0].cash_sell}`;
+        resultTemplate.body.contents[6].text = ` `; // 隱藏「目前非外匯交易時間」
+
+        const result = await event.reply({
+          type: "flex",
+          altText: "000",
+          contents: resultTemplate,
+        });
+        return result;
+      }
     } catch (error) {
       console.log(error);
     }

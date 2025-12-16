@@ -64,12 +64,16 @@ bot.on("message", async (event) => {
     // 4.輸入代號 開始查詢
   } else {
     if (selectTemplate === action1) {
+      console.log("使用者輸入的匯率資訊", event.message.text);
+
       commandExchange(event.message.text, event);
       // TODO: 匯率查詢功能待實作
     } else if (selectTemplate === action2) {
+      console.log("使用者輸入的股票資訊", event.message.text);
+
       commandStock(event.message.text, event);
 
-      console.log("使用者輸入的代號是", event.message.text);
+      // console.log("使用者輸入的代號是", event.message.text);
     }
   }
 });

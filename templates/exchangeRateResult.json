@@ -20,7 +20,7 @@
       },
       {
         "type": "text",
-        "text": "即期買入：31.33",
+        "text": "即期買入：",
         "weight": "bold",
         "size": "md",
         "color": "#333333",
@@ -28,7 +28,7 @@
       },
       {
         "type": "text",
-        "text": "即期賣出：31.43",
+        "text": "即期賣出：",
         "weight": "bold",
         "size": "md",
         "color": "#333333",
@@ -36,18 +36,29 @@
       },
       {
         "type": "text",
-        "text": "現金買入：30.98",
+        "text": "現金買入：",
         "size": "sm",
         "color": "#00AA00",
         "margin": "md"
       },
       {
         "type": "text",
-        "text": "現金賣出：31.65",
+        "text": "現金賣出：",
         "size": "sm",
         "color": "#D92D20",
         "margin": "sm"
       },
+
+      {
+        "type": "text",
+        "text": "目前非外匯交易時間",
+        "size": "xs",
+        "color": "#FF8C00",
+        "wrap": true,
+        "margin": "md",
+        "align": "center"
+      },
+
       {
         "type": "separator",
         "margin": "md"
