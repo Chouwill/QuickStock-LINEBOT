@@ -1,0 +1,69 @@
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "匯率：USD / TWD",
+        "size": "lg",
+        "color": "#555555",
+        "margin": "sm"
+      },
+      {
+        "type": "text",
+        "text": "日期：2025-12-15",
+        "size": "sm",
+        "color": "#555555",
+        "margin": "sm"
+      },
+      {
+        "type": "text",
+        "text": "即期買入：31.33",
+        "weight": "bold",
+        "size": "md",
+        "color": "#333333",
+        "margin": "md"
+      },
+      {
+        "type": "text",
+        "text": "即期賣出：31.43",
+        "weight": "bold",
+        "size": "md",
+        "color": "#333333",
+        "margin": "sm"
+      },
+      {
+        "type": "text",
+        "text": "現金買入：30.98",
+        "size": "sm",
+        "color": "#00AA00",
+        "margin": "md"
+      },
+      {
+        "type": "text",
+        "text": "現金賣出：31.65",
+        "size": "sm",
+        "color": "#D92D20",
+        "margin": "sm"
+      },
+      {
+        "type": "separator",
+        "margin": "md"
+      },
+      {
+        "type": "text",
+        "text": "資料來源：僅供參考",
+        "color": "#999999",
+        "size": "xs",
+        "margin": "sm"
+      }
+    ]
+  },
+  "styles": {
+    "body": {
+      "backgroundColor": "#F9FBFC"
+    }
+  }
+}
