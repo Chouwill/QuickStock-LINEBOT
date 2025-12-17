@@ -1,0 +1,52 @@
+{
+  "type": "bubble",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "選擇查詢日期",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "margin": "md"
+      },
+      {
+        "type": "text",
+        "text": "你可以選擇指定日期查詢\n若不選，將預設查詢當日資料",
+        "wrap": true,
+        "color": "#666666",
+        "size": "md",
+        "align": "center",
+        "margin": "lg"
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "md",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "action": {
+          "type": "datetimepicker",
+          "label": "選擇日期",
+          "mode": "date",
+          "data": "action=selectDate"
+        }
+      },
+      {
+        "type": "button",
+        "style": "secondary",
+        "action": {
+          "type": "postback",
+          "label": "直接查詢今日",
+          "data": "action=queryToday"
+        }
+      }
+    ]
+  }
+}

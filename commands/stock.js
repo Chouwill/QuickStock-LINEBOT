@@ -4,8 +4,9 @@ import stockResult from "../templates/stockResult.json" with { type: "json" };
 import dayjs from "dayjs";
 //import dayjs from 'dayjs' // ES 2015
 dayjs().format();
-export default async (userStr, event) => {
+export default async (userStr, event, queryDate = null) => {
   console.log("使用者輸入：", userStr);
+  console.log("查詢日期參數：", queryDate);
 
   console.log("stockUse", stockUse);
 
@@ -19,7 +20,10 @@ export default async (userStr, event) => {
   //   "nowTime",
   //   `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`
   // );
-  const nowTime = `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`;
+  
+  // 如果有傳入日期參數就使用，否則使用今日日期
+  const nowTime = queryDate || `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`;
+  console.log("實際使用的查詢日期：", nowTime);
 
   console.log("\n");
 

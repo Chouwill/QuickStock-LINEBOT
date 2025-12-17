@@ -1,2 +1,9 @@
 node_modules/
 .env
+
+# 現有的 Markdown 文件（不上傳到 git）
+完整程式碼執行流程.md
+狀態管理與資料傳遞說明.md
+JSON-Quiz.md
+LINE-Template-Guide.md
+ngrok-setup.md
