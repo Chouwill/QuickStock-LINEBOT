@@ -1,5 +1,5 @@
 ---
-title: QuickStock LINE Bot
+
 
 ---
 
