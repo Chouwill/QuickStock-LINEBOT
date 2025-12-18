@@ -1,8 +1,3 @@
----
-
-
----
-
 # QuickStock LINE Bot
 （LINE 官方帳號：股匯即時報）
 
