@@ -21,8 +21,7 @@ export default async (userStr, event, queryDate = null) => {
   //   `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`
   // );
 
-  // 如果有傳入日期參數就使用，否則使用今日日期
-  const nowTime =
+  const nowTime = // 查詢日期
     queryDate ||
     `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`;
   console.log("實際使用的查詢日期：", nowTime);
@@ -44,14 +43,7 @@ export default async (userStr, event, queryDate = null) => {
 
   console.log("\n");
 
-  //   date	日期	該筆匯率的牌告日期
-  // currency	幣別代碼	ISO 幣別（如 USD、JPY）
-  // cash_buy	現金買入	銀行向你「買入外幣現金」的價格
-  // cash_sell	現金賣出	銀行「賣你外幣現金」的價格
-  // spot_buy	即期買入	銀行向你「買入外幣帳戶」的價格
-  // spot_sell	即期賣出	銀行「賣你外幣帳戶」的價格
-
-  async function searchExchange(userStr) {
+  async function searchExchange(userStr) { // 查詢匯率
     try {
       const token = process.env.FINMIND_API_TOKEN;
       console.log(
@@ -73,10 +65,9 @@ export default async (userStr, event, queryDate = null) => {
       console.log("今天日期", typeof todayWeekDay);
 
       console.log("外匯", exchangeData.data.data);
-      const resultTemplate = JSON.parse(JSON.stringify(exchangeResult));
+      const resultTemplate = JSON.parse(JSON.stringify(exchangeResult)); // 結果模板
 
-      if (exchangeData.data.data.length === 0) {
-        // 如果資料為空陣列
+      if (exchangeData.data.data.length === 0) { // 無資料處理
         console.log("今天沒有資料");
         resultTemplate.body.contents[0].text = `匯率:${userStr.toUpperCase()}`;
         resultTemplate.body.contents[1].text = `日期：${nowTime}`;
@@ -94,7 +85,7 @@ export default async (userStr, event, queryDate = null) => {
         resultTemplate.body.contents[3].text = `即期賣出：${exchangeData.data.data[0].spot_sell}`;
         resultTemplate.body.contents[4].text = `現金買入：${exchangeData.data.data[0].cash_buy}`;
         resultTemplate.body.contents[5].text = `現金賣出：${exchangeData.data.data[0].cash_sell}`;
-        resultTemplate.body.contents[6].text = ` `; // 隱藏「目前非外匯交易時間」
+        resultTemplate.body.contents[6].text = ` `;
 
         const result = await event.reply({
           type: "flex",
@@ -104,9 +95,24 @@ export default async (userStr, event, queryDate = null) => {
         return result;
       }
     } catch (error) {
-      console.log(error);
+      console.error("查詢匯率錯誤:", error);
+      // 確保錯誤時也要回應使用者
+      try {
+        await event.reply({
+          type: "text",
+          text: "查詢匯率時發生錯誤，請稍後再試",
+        });
+      } catch (replyError) {
+        console.error("回覆錯誤:", replyError);
+      }
+      throw error; // 重新拋出錯誤，讓上層知道
     }
   }
 
-  return await searchExchange(userStr);
+  try {
+    return await searchExchange(userStr);
+  } catch (error) {
+    // 錯誤已在 searchExchange 中處理
+    return null;
+  }
 };

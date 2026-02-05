@@ -21,13 +21,12 @@ export default async (userStr, event, queryDate = null) => {
   //   `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`
   // );
   
-  // 如果有傳入日期參數就使用，否則使用今日日期
-  const nowTime = queryDate || `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`;
+  const nowTime = queryDate || `${dayjs().format("YYYY")}-${dayjs().format("MM")}-${dayjs().format("DD")}`; // 查詢日期
   console.log("實際使用的查詢日期：", nowTime);
 
   console.log("\n");
 
-  async function searchStock(userStr) {
+  async function searchStock(userStr) { // 查詢股票
     try {
       const token = process.env.FINMIND_API_TOKEN;
       console.log(
@@ -67,13 +66,13 @@ export default async (userStr, event, queryDate = null) => {
 
       console.log(typeof nameRes);
 
-      const concatData = nameRes.data.data.concat(priceRes.data.data);
+      const concatData = nameRes.data.data.concat(priceRes.data.data); // 合併資料
 
       console.log("合併後", concatData);
 
-      const resultTemplate = JSON.parse(JSON.stringify(stockResult));
+      const resultTemplate = JSON.parse(JSON.stringify(stockResult)); // 結果模板
 
-      if (concatData.length === 0) {
+      if (concatData.length === 0) { // 無資料處理
         console.log("今天沒有資料");
         resultTemplate.body.contents[0].text = `匯率:${userStr}`;
         resultTemplate.body.contents[1].text = `日期：${nowTime}`;
@@ -84,8 +83,7 @@ export default async (userStr, event, queryDate = null) => {
           contents: resultTemplate,
         });
         return result;
-      } else if (!concatData[1]) {
-        // 防止 concatData[1] 是 undefined 的錯誤
+      } else if (!concatData[1]) { // 資料檢查
         console.log("資料不完整，concatData[1] 不存在");
         console.log("今天沒有資料");
         resultTemplate.body.contents[0].text = `股票:${userStr}`;
@@ -135,8 +133,23 @@ export default async (userStr, event, queryDate = null) => {
       // });
       // return result;
     } catch (error) {
-      console.log(error);
+      console.error("查詢股票錯誤:", error);
+      // 確保錯誤時也要回應使用者
+      try {
+        await event.reply({
+          type: "text",
+          text: "查詢股票時發生錯誤，請稍後再試",
+        });
+      } catch (replyError) {
+        console.error("回覆錯誤:", replyError);
+      }
+      throw error; // 重新拋出錯誤，讓上層知道
     }
   }
-  return await searchStock(userStr);
+  try {
+    return await searchStock(userStr);
+  } catch (error) {
+    // 錯誤已在 searchStock 中處理
+    return null;
+  }
 };
