@@ -36,96 +36,97 @@ bot.on("message", async (event) => {
     const userId = event.source.userId; // 使用者ID
 
     if (event.message.text === action1) {
-    console.log("進入匯率功能");
+      console.log("進入匯率功能");
 
-    userState[userId] = { // 初始化狀態
-      type: "exchange",
-      code: "",
-      date: "",
-    };
-    console.log("使用者狀態:", userState[userId]);
+      userState[userId] = { // 初始化狀態
+        type: "exchange",
+        code: "",
+        date: "",
+      };
+      console.log("使用者狀態:", userState[userId]);
 
-    const exchangeBoard = JSON.parse(JSON.stringify(exchangeUse));
+      const exchangeBoard = JSON.parse(JSON.stringify(exchangeUse));
 
-    console.log(exchangeBoard);
+      console.log(exchangeBoard);
 
-    const result = await event.reply({
-      type: "flex",
-      altText: "XXXX",
-      contents: exchangeBoard,
-    });
-
-    return result;
-  } else if (event.message.text === action2) {
-    console.log("進入股票功能");
-
-    userState[userId] = { // 初始化狀態
-      type: "stock",
-      code: "",
-      date: "",
-    };
-    console.log("使用者狀態:", userState[userId]);
-
-    const stockBoard = JSON.parse(JSON.stringify(stockUse));
-
-    console.log(stockBoard);
-
-    const result = await event.reply({
-      type: "flex",
-      altText: "XXXX",
-      contents: stockBoard,
-    });
-
-    return result;
-  } else {
-    if (!userState[userId]) { // 檢查狀態
-      console.log("使用者尚未選擇功能");
-      // 引導使用者選擇功能
-      const welcomeBoard = JSON.parse(JSON.stringify(template));
-      await event.reply({
-        type: "flex",
-        altText: "請選擇功能",
-        contents: welcomeBoard,
-      });
-      return;
-    }
-
-    const currentState = userState[userId];
-
-    if (currentState.type === "exchange") {
-      console.log("使用者輸入的匯率資訊", event.message.text);
-
-      currentState.code = event.message.text; // 儲存代號
-      console.log("更新後的使用者狀態:", userState[userId]);
-
-      const selectDayBoard = JSON.parse(JSON.stringify(selectDateTemplate));
-
-      console.log(selectDayBoard);
-
-      const dayResult = await event.reply({
+      const result = await event.reply({
         type: "flex",
         altText: "XXXX",
-        contents: selectDayBoard,
+        contents: exchangeBoard,
       });
 
-      return dayResult;
-    } else if (currentState.type === "stock") {
-      console.log("使用者輸入的股票資訊", event.message.text);
+      return result;
+    } else if (event.message.text === action2) {
+      console.log("進入股票功能");
 
-      currentState.code = event.message.text; // 儲存代號
-      console.log("更新後的使用者狀態:", userState[userId]);
+      userState[userId] = { // 初始化狀態
+        type: "stock",
+        code: "",
+        date: "",
+      };
+      console.log("使用者狀態:", userState[userId]);
 
-      const selectDayBoard = JSON.parse(JSON.stringify(selectDateTemplate));
+      const stockBoard = JSON.parse(JSON.stringify(stockUse));
 
-      console.log(selectDayBoard);
+      console.log(stockBoard);
 
-      const dayResult = await event.reply({
+      const result = await event.reply({
         type: "flex",
         altText: "XXXX",
-        contents: selectDayBoard,
+        contents: stockBoard,
       });
 
-      return dayResult;
+      return result;
+    } else {
+      if (!userState[userId]) { // 檢查狀態
+        console.log("使用者尚未選擇功能");
+        // 引導使用者選擇功能
+        const welcomeBoard = JSON.parse(JSON.stringify(template));
+        await event.reply({
+          type: "flex",
+          altText: "請選擇功能",
+          contents: welcomeBoard,
+        });
+        return;
+      }
+
+      const currentState = userState[userId];
+
+      if (currentState.type === "exchange") {
+        console.log("使用者輸入的匯率資訊", event.message.text);
+
+        currentState.code = event.message.text; // 儲存代號
+        console.log("更新後的使用者狀態:", userState[userId]);
+
+        const selectDayBoard = JSON.parse(JSON.stringify(selectDateTemplate));
+
+        console.log(selectDayBoard);
+
+        const dayResult = await event.reply({
+          type: "flex",
+          altText: "XXXX",
+          contents: selectDayBoard,
+        });
+
+        return dayResult;
+      } else if (currentState.type === "stock") {
+        console.log("使用者輸入的股票資訊", event.message.text);
+
+        currentState.code = event.message.text; // 儲存代號
+        console.log("更新後的使用者狀態:", userState[userId]);
+
+        const selectDayBoard = JSON.parse(JSON.stringify(selectDateTemplate));
+
+        console.log(selectDayBoard);
+
+        const dayResult = await event.reply({
+          type: "flex",
+          altText: "XXXX",
+          contents: selectDayBoard,
+        });
+
+        return dayResult;
+      }
     }
   } catch (error) {
     console.error("訊息處理錯誤:", error);
